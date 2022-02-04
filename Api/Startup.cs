@@ -59,6 +59,8 @@ namespace Api
                 app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
+            app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string>() { "index.html" } });
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
