@@ -1,3 +1,4 @@
+using Api.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -44,6 +45,8 @@ namespace Api
                 );
             });
 
+            services.AdicionarPacotesFramework(Configuration);
+
             services.AddSwaggerGen(options =>
                 options.SwaggerDoc(VERSAO_API, new OpenApiInfo
                 {
@@ -51,6 +54,8 @@ namespace Api
                     Title = NOME_API
                 })
             );
+
+            services.AddMvc(options => options.AdicionarPacotesFramework());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
