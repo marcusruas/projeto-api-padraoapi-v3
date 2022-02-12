@@ -26,7 +26,7 @@ namespace Api
 
         private const string NOME_API = "Scaffold API";
         private const string VERSAO_API = "v1";
-        private const string NOME_POLITICA_CORS = "Autorização Front-end";
+        private const string NOME_POLITICA_CORS = "Autorizaï¿½ï¿½o Front-end";
         private string[] ORIGENS_CORS = new string[] { "http://localhost:4200", "https://localhost:4200" };
 
         public void ConfigureServices(IServiceCollection services)
@@ -47,13 +47,36 @@ namespace Api
 
             services.AdicionarPacotesFramework(Configuration);
 
-            services.AddSwaggerGen(options =>
-                options.SwaggerDoc(VERSAO_API, new OpenApiInfo
+            services.AddSwaggerGen(cnf =>
+            {
+                cnf.SwaggerDoc(VERSAO_API, new OpenApiInfo { Version = VERSAO_API, Title = NOME_API });
+                cnf.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Version = VERSAO_API,
-                    Title = NOME_API
-                })
-            );
+                    Description = @"Header autenticacao via Json Web Tokens (JWT). insira abaixo o seu token da seguinte forma: 'Bearer 12345abcdef'",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                cnf.AddSecurityRequirement(new OpenApiSecurityRequirement() {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                    Reference = new OpenApiReference
+                        {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                        },
+                        Scheme = "oauth2",
+                        Name = "Bearer",
+                        In = ParameterLocation.Header,
+
+                    },
+                    new List<string>()
+                    }
+                });
+            });
 
             services.AddMvc(options => options.AdicionarPacotesFramework());
         }
