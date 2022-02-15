@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="3.2.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.2" />
     <PackageReference Include="MandradeFrameworks.Autenticacao" Version="1.0.0" />
     <PackageReference Include="MandradeFrameworks.Logs" Version="1.0.4" />
     <PackageReference Include="MandradeFrameworks.Mensagens" Version="1.0.0" />
