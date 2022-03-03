@@ -20,12 +20,24 @@ Para começar a desenvolver neste Scaffold, é necessário somente algumas coisa
 
 ### Api
 
+Aqui fica endpoints da aplicação
+
 ### Application
+
+Aqui fica os requests e requestsHandlers da aplicação
 
 ### Communication
 
+Aqui fica qualquer integração com apis externas
+
 ### Domain
+
+Domínio da aplicação
 
 ### Infrastructure
 
+Repositórios da aplicação
+
 ### Tests
+
+Testes da aplicação
