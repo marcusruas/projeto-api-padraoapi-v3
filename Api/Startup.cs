@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MediatR;
 using Infrastructure.DBContexts;
 using MandradeFrameworks.Repositorios.Configuration;
 
