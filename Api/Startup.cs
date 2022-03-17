@@ -1,4 +1,5 @@
 using Api.Configuration;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -45,6 +46,8 @@ namespace Api
                         .AllowCredentials()
                 );
             });
+
+            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AdicionarPacotesFramework(Configuration);
             services.AdicionarMiddlewares(Configuration);
