@@ -13,12 +13,14 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
+using Infrastructure.Livros;
+using Infrastructure.Livros.Repository;
 
 namespace Api.Configuration
 {
     public static class DependencyInjection
     {
-        private const string NOME_API = "Scaffold API";
+        private const string NOME_API = "API de exemplo";
         private const string VERSAO_API = "v1";
 
         public static void AdicionarPacotesFramework(this IServiceCollection services, IConfiguration configuration)
@@ -90,6 +92,11 @@ namespace Api.Configuration
         public static void AdicionarPacotesFramework(this MvcOptions options)
         {
             options.AdicionarConfiguracoes();
+        }
+
+        public static void AdicionarRepositorios(this IServiceCollection services)
+        {
+            services.AddScoped<ILivrosRepositorio, LivrosRepositorio>();
         }
     }
 }

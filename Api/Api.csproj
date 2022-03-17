@@ -10,10 +10,20 @@
     <PackageReference Include="MandradeFrameworks.Autenticacao" Version="1.0.0" />
     <PackageReference Include="MandradeFrameworks.Logs" Version="1.0.4" />
     <PackageReference Include="MandradeFrameworks.Mensagens" Version="1.0.0" />
-    <PackageReference Include="MandradeFrameworks.Repositorios" Version="1.0.0" />
-    <PackageReference Include="MandradeFrameworks.Retornos" Version="1.0.0" />
-    <PackageReference Include="MandradeFrameworks.SharedKernel" Version="1.0.0" />
+    <PackageReference Include="MandradeFrameworks.Repositorios" Version="1.0.8" />
+    <PackageReference Include="MandradeFrameworks.Retornos" Version="1.0.1" />
+    <PackageReference Include="MandradeFrameworks.SharedKernel" Version="1.0.3" />
     <PackageReference Include="MandradeFrameworks.Tests" Version="1.0.3" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
