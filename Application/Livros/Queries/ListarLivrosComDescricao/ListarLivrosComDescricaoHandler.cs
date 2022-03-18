@@ -1,4 +1,5 @@
-﻿using Domain.Livros.Entities;
+﻿using Application.Recursos;
+using Domain.Livros.Entities;
 using Domain.Livros.Specifications;
 using Infrastructure.Livros.Repository;
 using MandradeFrameworks.Retornos.Handlers;
@@ -21,7 +22,7 @@ namespace Application.Livros.Queries.ListarLivrosComDescricao
                 .ConsultaComSpecification(new LivrosComDescricaoSpecification());
 
             if (!livros.Any())
-                _mensageria.RetornarMensagemFalhaValidacao("Não foi possível localizar nenhum livro para a pesquisa indicada.");
+                _mensageria.RetornarMensagemFalhaValidacao(Mensagens.LivroNaoEncontrado);
 
             return livros;
         }

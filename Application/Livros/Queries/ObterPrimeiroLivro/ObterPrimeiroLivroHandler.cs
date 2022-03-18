@@ -1,10 +1,8 @@
-﻿using Domain.Livros.Entities;
-using Infrastructure.Livros;
+﻿using Application.Recursos;
+using Domain.Livros.Entities;
 using Infrastructure.Livros.Repository;
 using MandradeFrameworks.Retornos.Handlers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,7 +17,7 @@ namespace Application.Livros.Queries.ObterPrimeiroLivro
             var livro = await ObterRepositorio<ILivrosRepositorio>().FirstOrDefaultAsync<Livro>();
 
             if (livro is null)
-                _mensageria.RetornarMensagemFalhaValidacao("Não foi possível localizar nenhum livro na base de dados.");
+                _mensageria.RetornarMensagemFalhaValidacao(Mensagens.NenhumLivroCadastrado);
 
             return livro;
         }

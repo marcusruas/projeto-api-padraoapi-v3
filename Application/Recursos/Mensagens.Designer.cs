@@ -59,5 +59,23 @@ namespace Application.Recursos {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a &quot;Não foi possível localizar nenhum livro para a pesquisa indicada.&quot;.
+        /// </summary>
+        internal static string LivroNaoEncontrado {
+            get {
+                return ResourceManager.GetString("LivroNaoEncontrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a &quot;Não foi possível localizar nenhum livro na base de dados.&quot;.
+        /// </summary>
+        internal static string NenhumLivroCadastrado {
+            get {
+                return ResourceManager.GetString("NenhumLivroCadastrado", resourceCulture);
+            }
+        }
     }
 }

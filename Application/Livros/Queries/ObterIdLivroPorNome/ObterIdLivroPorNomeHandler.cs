@@ -1,4 +1,5 @@
-﻿using Infrastructure.Livros.Repository;
+﻿using Application.Recursos;
+using Infrastructure.Livros.Repository;
 using MandradeFrameworks.Retornos.Handlers;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Application.Livros.Queries.ObterIdLivroPorNome
                 .ObterIdLivroPorNome(request.Nome);
 
             if (idRetorno == Guid.Empty)
-                _mensageria.RetornarMensagemFalhaValidacao("Não foi possível encontrar um livro com esse nome.");
+                _mensageria.RetornarMensagemFalhaValidacao(Mensagens.LivroNaoEncontrado);
 
             return idRetorno;
         }
