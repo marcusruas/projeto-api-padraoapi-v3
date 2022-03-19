@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="MandradeFrameworks.Autenticacao" Version="1.0.0" />
-    <PackageReference Include="MandradeFrameworks.Logs" Version="1.0.4" />
+    <PackageReference Include="MandradeFrameworks.Logs" Version="1.0.9" />
     <PackageReference Include="MandradeFrameworks.Mensagens" Version="1.0.0" />
     <PackageReference Include="MandradeFrameworks.Retornos" Version="1.0.1" />
     <PackageReference Include="MandradeFrameworks.SharedKernel" Version="1.0.3" />

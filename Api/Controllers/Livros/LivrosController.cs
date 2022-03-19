@@ -13,6 +13,7 @@ using MandradeFrameworks.Retornos.Models;
 using MandradeFrameworks.SharedKernel.Usuario;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Api.Controllers.Livros
 {
@@ -46,7 +47,7 @@ namespace Api.Controllers.Livros
         public async Task<RetornoApi<bool>> CadastrarLivro([FromBody] CadastrarLivroCommand command) =>
             await ProcessarSolicitacao(command);
 
-        // Método que realiza queries via Dapper
+        // Método que realiza queries via Dapper. Esse método também utiliza logs.
         [HttpGet]
         [Route("{nome}/id")]
         public async Task<RetornoApi<Guid>> ObterIdLivroPorNome(string nome) =>

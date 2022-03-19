@@ -1,6 +1,7 @@
 ﻿using Application.Recursos;
 using Infrastructure.Livros.Repository;
 using MandradeFrameworks.Retornos.Handlers;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,8 +19,13 @@ namespace Application.Livros.Queries.ObterIdLivroPorNome
             var idRetorno = await ObterRepositorio<ILivrosRepositorio>()
                 .ObterIdLivroPorNome(request.Nome);
 
+            Log.Information(nameof(ObterIdLivroPorNomeHandler), idRetorno.ToString());
+
             if (idRetorno == Guid.Empty)
+            {
+                Log.Warning(nameof(ObterIdLivroPorNomeHandler), Mensagens.LivroNaoEncontrado);
                 _mensageria.RetornarMensagemFalhaValidacao(Mensagens.LivroNaoEncontrado);
+            }
 
             return idRetorno;
         }
