@@ -25,13 +25,11 @@ namespace Api.Configuration
 
         public static void AdicionarPacotesFramework(this IServiceCollection services, IConfiguration configuration)
         {
-            var configuracoesLogs = configuration.GetSection("SQLConfigurationLogs").Get<SQLLogsConfiguration>();
             var configuracoesTestes = configuration.GetSection("Tests").Get<ConfiguracoesTestes>();
 
             services.AdicionarMensageria();
             services.AdicionarAutenticacao();
             services.AdicionarTestes(configuracoesTestes);
-            LogsConfiguration.AdicionarLogs(configuracoesLogs);
         }
 
         public static void AdicionarMiddlewares(this IServiceCollection services, IConfiguration configuration)
