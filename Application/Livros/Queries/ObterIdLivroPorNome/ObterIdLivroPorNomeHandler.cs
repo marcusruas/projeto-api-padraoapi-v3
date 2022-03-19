@@ -19,11 +19,11 @@ namespace Application.Livros.Queries.ObterIdLivroPorNome
             var idRetorno = await ObterRepositorio<ILivrosRepositorio>()
                 .ObterIdLivroPorNome(request.Nome);
 
-            Log.Information(nameof(ObterIdLivroPorNomeHandler), idRetorno.ToString());
+            Log.ForContext("IdRetorno", idRetorno.ToString()).Information(nameof(ObterIdLivroPorNomeHandler));
 
             if (idRetorno == Guid.Empty)
             {
-                Log.Warning(nameof(ObterIdLivroPorNomeHandler), Mensagens.LivroNaoEncontrado);
+                Log.ForContext("MensagemRetorno", Mensagens.LivroNaoEncontrado).Warning(nameof(ObterIdLivroPorNomeHandler));
                 _mensageria.RetornarMensagemFalhaValidacao(Mensagens.LivroNaoEncontrado);
             }
 
