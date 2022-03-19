@@ -3,7 +3,7 @@ using MandradeFrameworks.Mensagens.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using MandradeFrameworks.Retornos.Configuration;
 using Microsoft.Extensions.Configuration;
-using MandradeFrameworks.Logs.Configuration;
+using static MandradeFrameworks.Logs.Configuration.LogsConfiguration;
 using MandradeFrameworks.Logs.Models;
 using MandradeFrameworks.Autenticacao.Configuration;
 using MandradeFrameworks.Tests.Models;
@@ -29,6 +29,7 @@ namespace Api.Configuration
 
             services.AdicionarMensageria();
             services.AdicionarAutenticacao();
+            AdicionarLogs(configuration, "Logs_Livros");
             services.AdicionarTestes(configuracoesTestes);
         }
 
