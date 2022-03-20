@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Livros.Commands;
 using Application.Livros.Queries.ListarLivrosComDescricao;
+using Application.Livros.Queries.ListarLivrosNomesLongo;
 using Application.Livros.Queries.ListarTodosLivros;
 using Application.Livros.Queries.ObterIdLivroPorNome;
 using Application.Livros.Queries.ObterPrimeiroLivro;
@@ -29,6 +30,12 @@ namespace Api.Controllers.Livros
         [Route("{pagina}/{quantidadeRegistros}")]
         public async Task<RetornoApi<ListaPaginada<Livro>>> ListarTodosLivros(int pagina, int quantidadeRegistros) =>
             await ProcessarSolicitacao(new ListarTodosLivrosQuery(pagina, quantidadeRegistros));
+
+        // Método utilizando specification com paginação
+        [HttpGet]
+        [Route("nomes-longos/{pagina}/{quantidadeRegistros}")]
+        public async Task<RetornoApi<ListaPaginada<Livro>>> ListarTodosLivrosComNomesLongos(int pagina, int quantidadeRegistros) =>
+            await ProcessarSolicitacao(new ListarLivrosNomesLongoQuery(pagina, quantidadeRegistros));
 
         // Metodo apenas para exemplificar um simples endpoint
         [HttpGet]
