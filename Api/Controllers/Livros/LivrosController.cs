@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Livros.Commands;
 using Application.Livros.Queries.ListarLivrosComDescricao;
+using Application.Livros.Queries.ListarTodosLivros;
 using Application.Livros.Queries.ObterIdLivroPorNome;
 using Application.Livros.Queries.ObterPrimeiroLivro;
 using Application.Livros.Queries.ObterTitulosLivros;
@@ -10,6 +11,7 @@ using Domain.Livros.Entities;
 using MandradeFrameworks.Autenticacao.Filters;
 using MandradeFrameworks.Retornos.Controllers;
 using MandradeFrameworks.Retornos.Models;
+using MandradeFrameworks.SharedKernel.Models;
 using MandradeFrameworks.SharedKernel.Usuario;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +23,12 @@ namespace Api.Controllers.Livros
     public class LivrosController : StandardController
     {
         public LivrosController(IMediator mediador) : base(mediador) { }
+
+        // Método utilizando paginação
+        [HttpGet]
+        [Route("{pagina}/{quantidadeRegistros}")]
+        public async Task<RetornoApi<ListaPaginada<Livro>>> ListarTodosLivros(int pagina, int quantidadeRegistros) =>
+            await ProcessarSolicitacao(new ListarTodosLivrosQuery(pagina, quantidadeRegistros));
 
         // Metodo apenas para exemplificar um simples endpoint
         [HttpGet]

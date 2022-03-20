@@ -41,7 +41,7 @@ namespace Application.Livros.Commands
 
             _sucessoOperacao = linhasAfetadas > 0;
 
-            if (!_sucessoOperacao)
+            if (_sucessoOperacao)
                 _mensageria.AdicionarMensagemInformativa("Livro cadastrado com sucesso.");
         }
     }
