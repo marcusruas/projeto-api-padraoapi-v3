@@ -3,41 +3,40 @@ using MandradeFrameworks.Mensagens.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using MandradeFrameworks.Retornos.Configuration;
 using Microsoft.Extensions.Configuration;
-using MandradeFrameworks.Logs.Configuration;
 using MandradeFrameworks.Logs.Models;
 using MandradeFrameworks.Autenticacao.Configuration;
-using MandradeFrameworks.Tests.Models;
-using MandradeFrameworks.Tests.Configuration;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using HealthChecks.UI.Client;
+using static MandradeFrameworks.Logs.Configuration.LogsConfiguration;
+using static Infrastructure.Configuration.RepositoryDependencyInjection;
+using static Application.Configuration.ApplicationDependencyInjection;
 
 namespace Api.Configuration
 {
-    public static class DependencyInjection
+    public static class ApiConfiguration
     {
         private const string NOME_API = "Scaffold API";
         private const string VERSAO_API = "v1";
 
+        public static void AdicionarDependencyInjection(this IServiceCollection services)
+        {
+            services.AdicionarRepositorios();
+            services.AdicionarServicos();
+        }
+
         public static void AdicionarPacotesFramework(this IServiceCollection services, IConfiguration configuration)
         {
-            var configuracoesLogs = configuration.GetSection("SQLConfigurationLogs").Get<SQLLogsConfiguration>();
-            var configuracoesTestes = configuration.GetSection("Tests").Get<ConfiguracoesTestes>();
+            string connectionStringLogs = configuration.GetConnectionString("Logs");
+            var configuracoesLogs = new SQLLogsConfiguration(connectionStringLogs, "Logs_Livros");
 
             services.AdicionarMensageria();
             services.AdicionarAutenticacao();
-            services.AdicionarTestes(configuracoesTestes);
-            LogsConfiguration.AdicionarLogs(configuracoesLogs);
+            AdicionarLogsSQL(configuracoesLogs);
         }
 
         public static void AdicionarMiddlewares(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddHealthChecks()
-                .AddSqlServer(configuration["SQLConfigurationLogs:ConnectionString"], name: "Banco de Logs")
-                .AddSqlServer(configuration["Tests:ConnectionString"], name: "Banco de Testes");
-
             services.AddSwaggerGen(cnf =>
             {
                 cnf.SwaggerDoc(VERSAO_API, new OpenApiInfo { Version = VERSAO_API, Title = NOME_API });
@@ -75,12 +74,6 @@ namespace Api.Configuration
             application.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-            application.UseHealthChecks("/status", new HealthCheckOptions()
-            {
-                Predicate = _ => true,
-                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
             });
 
             application.UseSwagger();
