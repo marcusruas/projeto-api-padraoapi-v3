@@ -27,11 +27,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Livros\Repository\SQL\*.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
   
 </Project>

@@ -117,10 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LivroNaoEncontrado" xml:space="preserve">
-    <value>"Não foi possível localizar nenhum livro para a pesquisa indicada."</value>
-  </data>
-  <data name="NenhumLivroCadastrado" xml:space="preserve">
-    <value>"Não foi possível localizar nenhum livro na base de dados."</value>
-  </data>
 </root>

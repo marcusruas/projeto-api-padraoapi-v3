@@ -16,8 +16,9 @@ namespace Api.Configuration
 {
     public static class ApiConfiguration
     {
-        private const string NOME_API = "API de exemplo";
+        private const string NOME_API = "Scaffold API";
         private const string VERSAO_API = "v1";
+        private const string TABELA_LOGS = "Logs_Scaffold";
 
         public static void AdicionarDependencyInjection(this IServiceCollection services)
         {
@@ -28,7 +29,7 @@ namespace Api.Configuration
         public static void AdicionarPacotesFramework(this IServiceCollection services, IConfiguration configuration)
         {
             string connectionStringLogs = configuration.GetConnectionString("Logs");
-            var configuracoesLogs = new SQLLogsConfiguration(connectionStringLogs, "Logs_Livros");
+            var configuracoesLogs = new SQLLogsConfiguration(connectionStringLogs, TABELA_LOGS);
 
             services.AdicionarMensageria();
             services.AdicionarAutenticacao();
@@ -83,11 +84,6 @@ namespace Api.Configuration
         public static void AdicionarPacotesFramework(this MvcOptions options)
         {
             options.AdicionarConfiguracoes();
-        }
-
-        public static void AdicionarRepositorios(this IServiceCollection services)
-        {
-            services.AddScoped<ILivrosRepositorio, LivrosRepositorio>();
         }
     }
 }
