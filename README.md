@@ -14,7 +14,8 @@ Até a data da implementação desta documentação (15/02/2022), os pacotes ain
 ## Configurações iniciais necessárias
 Para começar a desenvolver neste Scaffold, é necessário somente algumas coisas:
 - Alterar o nome da solution principal (ScaffoldApi.sln) para o nome da futura api;
-- Alterar a variável NOME_API na classe Api.Configuration.DependencyInjection da camada de api para o nome da api desejada, bem como o nome do documento na invocação do serviço;
+- Alterar a variável NOME_API na classe Api.Configuration.ApiConfiguration da camada de api para o nome da api desejada, bem como o nome do documento na invocação do serviço;
+- Alterar a variável TABELA_LOGS na classe Api.Configuration.ApiConfiguration da camada de api para o nome da tabela desejada.
 
 ## Um pouco sobre a arquitetura da aplicação
 
@@ -24,7 +25,7 @@ Aqui fica endpoints da aplicação
 
 ### Application
 
-Aqui fica os requests e requestsHandlers da aplicação
+Aqui fica os requests e requestsHandlers da aplicação, bem como implementações de hosted services.
 
 ### Communication
 
@@ -32,11 +33,13 @@ Aqui fica qualquer integração com apis externas
 
 ### Domain
 
-Domínio da aplicação
+Domínio da aplicação, bem como seus objetos de valor, specifications etc.
 
 ### Infrastructure
 
 Repositórios da aplicação
+
+Para uso do repositório, é necessário manter a arquitetura da pasta "Areas" afim de poder usufruir da leitura de queries SQL em arquivos. Você pode criar uma nova pasta com um nome diferente, mas manter a arquitetura.
 
 ### Tests
 
