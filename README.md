@@ -29,7 +29,7 @@ Aqui fica os requests e requestsHandlers da aplicação, bem como implementaçõ
 
 ### Communication
 
-Aqui fica qualquer integração com apis externas
+Aqui fica qualquer integração com apis externas, você pode criar handlers para comunicação com apis para que não seja necessário um serviço como um todo
 
 ### Domain
 

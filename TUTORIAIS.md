@@ -98,6 +98,13 @@ public class ObterRegistroHandler : ApplicationRequestHandler<ObterRegistroReque
 }
 ```
 
+## Criando um Hosted Service
+
+- Crie uma classe herdando da interface IRequest do Mediatr e um Handler herdando da classe abstrata ApplicationRequestHandler;
+- Crie uma classe que irá agir como seu HostedService;
+- Faça ela herdar da classe abstrata ApplicationHostedService;
+- Adicione o HostedService no projeto via injeção de dependência, utilizando o método IServiceCollection.AddHostedService<THostedService>().
+
 # Infrastructure
 
 ## Criando um DBContext
