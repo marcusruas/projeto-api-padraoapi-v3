@@ -41,7 +41,7 @@ namespace Api
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AdicionarPacotesFramework(Configuration);
-            services.AdicionarMiddlewares(Configuration);
+            services.AdicionarMiddlewares();
             services.AdicionarDependencyInjection();
 
             services.AddMvc(options => options.AdicionarPacotesFramework());

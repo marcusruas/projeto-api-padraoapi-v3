@@ -36,7 +36,7 @@ namespace Api.Configuration
             AdicionarLogsSQL(configuracoesLogs);
         }
 
-        public static void AdicionarMiddlewares(this IServiceCollection services, IConfiguration configuration)
+        public static void AdicionarMiddlewares(this IServiceCollection services)
         {
             services.AddSwaggerGen(cnf =>
             {
