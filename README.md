@@ -19,28 +19,46 @@ Para começar a desenvolver neste Scaffold, é necessário somente algumas coisa
 
 ## Um pouco sobre a arquitetura da aplicação
 
-### Api
+## Api
+Camada com os endpoints da aplicação. Através do pacote [MediaTR](https://github.com/jbogard/MediatR) cada endpoint chama o handler indicado para a operação. 
 
-Aqui fica endpoints da aplicação
+## Application
+Camada com os handlers da aplicação. Ela utiliza os objetos e serviços das outras camadas para atender as solicitações do cliente.
 
-### Application
+## Communication
+Camada responsável pela comunicação da API de vendas com outras APIs, como a da SalesForce.
 
-Aqui fica os requests e requestsHandlers da aplicação, bem como implementações de hosted services.
+## Domain
+Camada com as regras de negócio da aplicação.
 
-### Communication
+## Infra
+Camada com os repositórios da aplicação, queries SQL e definições de banco de dados para interação da aplicação com SQL.
 
-Aqui fica qualquer integração com apis externas, você pode criar handlers para comunicação com apis para que não seja necessário um serviço como um todo
+## Tests
+Camada com os testes da aplicação utilizando XUnit.
 
-### Domain
+# Retorno da aplicação
+Todos os endpoints da aplicação devem retornar seus dados encapsulados no objeto *MandradeFrameworks.Retornos.Models.RetornoApi* conforme abaixo no formato _application/json_:
 
-Domínio da aplicação, bem como seus objetos de valor, specifications etc.
+```
+{
+    "sucesso": bool,
+    "retorno": T,
+    "mensagens": [
+        {
+            "tipo": int,
+            "valor": string
+        }
+    ]
+}
+```
 
-### Infrastructure
+Para gerar o retorno acima, os dados de retorno devem ser encapsulados no método *MandradeFrameworks.Retornos.Controllers.StandardController.RespostaPadrao<T>(T dados)* ou *MandradeFrameworks.Retornos.Controllers.StandardController.ProcessarSolicitacao<T>(IRequest<T> solicitacao)* caso seu endpoint execute apenas uma chamada via [MediaTR](https://github.com/jbogard/MediatR).
 
-Repositórios da aplicação
+## Explicação do modelo de retorno
+*sucesso*: define se a operação ocorreu com sucesso ou não. Essa propriedade é definida dependendo se ocorreu uma exception não tratada na aplicação durante a execução do endpoint.
+*dados*: dados de retorno do endpoint. Aqui ficará todos os dados de retorno do endpoint, sejam eles de quaisquer tipos. Caso ocorra uma exception não tratada na aplicação durante a execução do endpoint, será retornado apenas uma mensagem de erro padrão nesta propriedade.
+*mensagens*: aqui ficará as mensagens que foram adicionadas durante a execução do endpoint pelo serviço *MandradeFrameworks.Mensagens.IMensageria*
 
-Para uso do repositório, é necessário manter a arquitetura da pasta "Areas" afim de poder usufruir da leitura de queries SQL em arquivos. Você pode criar uma nova pasta com um nome diferente, mas manter a arquitetura.
-
-### Tests
-
-Testes da aplicação
+## Erros na aplicação
+Caso ocorra algum erro na aplicação, há um middleware para tratamento de exceptions que garantirá que a aplicação retorne os dados no formato padrão da API, sem quaisquer preocupações por parte do desenvolvedor.
